@@ -11,4 +11,6 @@ This plugin:
 ## Installation
 From your WordPress plugin directory, run:
 
-`git clone ngwp https://github.com/peterhartree/ng-wordpress-plugin.git`
+`git clone https://github.com/peterhartree/ng-wordpress-plugin.git ngwp`
+
+Then activate the plugin via the WordPress dashboard.
