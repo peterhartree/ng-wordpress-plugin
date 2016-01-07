@@ -45,10 +45,10 @@ function ngwp_get_custom_fields( $object, $field_name, $request ) {
     $custom_fields['featured_image'] = ngwp_get_featured_image( $object );
 
     $previous = false;
-    $custom_fields['next_post'] = ngwp_get_adjacent_post( $object['ID'], $previous );
+    $custom_fields['next_post'] = ngwp_get_adjacent_post( $object['id'], $previous );
 
     $previous = true;
-    $custom_fields['previous_post'] = ngwp_get_adjacent_post( $object['ID'], $previous );
+    $custom_fields['previous_post'] = ngwp_get_adjacent_post( $object['id'], $previous );
 
 
     return $custom_fields;
@@ -238,7 +238,7 @@ function ngwp_get_adjacent_post( $post_id, $previous ) {
  * @return mixed
  */
 function ngwp_get_published_date( $object ) {
-    $date = get_the_date(null, $object['ID']);
+    $date = get_the_date(null, $object['id']);
     return $date;
 }
 
@@ -252,7 +252,7 @@ function ngwp_get_published_date( $object ) {
  * @return mixed
  */
 function ngwp_get_modified_date( $object ) {
-    $date = get_the_modified_date(null, $object['ID']);
+    $date = get_the_modified_date(null, $object['id']);
     return $date;
 }
 
@@ -267,7 +267,7 @@ function ngwp_get_modified_date( $object ) {
  */
 function ngwp_get_featured_image( $object ) {
     $featured_image = array();
-    $featured_image_id = get_post_thumbnail_id( $object['ID'] );
+    $featured_image_id = get_post_thumbnail_id( $object['id'] );
     $featured_image_full_size_array = wp_get_attachment_image_src($thumb_id, 'full', true);
     $featured_image_large_size_array = wp_get_attachment_image_src($thumb_id, 'large', true);
     $featured_image_medium_size_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
