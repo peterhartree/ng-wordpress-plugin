@@ -42,6 +42,7 @@ function ngwp_get_custom_fields( $object, $field_name, $request ) {
     $custom_fields['author'] = ngwp_get_author( $object, $field_name, $request );
     $custom_fields['date_published'] = ngwp_get_published_date( $object );
     $custom_fields['date_modified'] = ngwp_get_modified_date( $object );
+    $custom_fields['featured_image'] = ngwp_get_featured_image( $object );
 
     $previous = false;
     $custom_fields['next_post'] = ngwp_get_adjacent_post( $object['ID'], $previous );
@@ -253,4 +254,29 @@ function ngwp_get_published_date( $object ) {
 function ngwp_get_modified_date( $object ) {
     $date = get_the_modified_date(null, $object['ID']);
     return $date;
+}
+
+/**
+ * Get the value of the "starship" field
+ *
+ * @param array $object Details of current post.
+ * @param string $field_name Name of field.
+ * @param WP_REST_Request $request Current request
+ *
+ * @return mixed
+ */
+function ngwp_get_featured_image( $object ) {
+    $featured_image = array();
+    $featured_image_id = get_post_thumbnail_id( $object['ID'] );
+    $featured_image_full_size_array = wp_get_attachment_image_src($thumb_id, 'full', true);
+    $featured_image_large_size_array = wp_get_attachment_image_src($thumb_id, 'large', true);
+    $featured_image_medium_size_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
+    $featured_image_thumbnail_size_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+    $featured_image['srcs'] = array();
+    $featured_image['srcs']['full'] = $featured_image_full_size_array[0];
+    $featured_image['srcs']['large'] = $featured_image_large_size_array[0];
+    $featured_image['srcs']['medium'] = $featured_image_medium_size_array[0];
+    $featured_image['srcs']['thumbnail'] = $featured_image_thumbnail_size_array[0];
+
+    return $featured_image;
 }
