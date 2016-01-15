@@ -10,6 +10,7 @@ Text Domain: ngwp
 */
 
 require_once('custom-fields.php');
+require_once('custom-routes/archive.php');
 require_once('custom-routes/options.php');
 //require_once('custom-post-types/example.php');
 require_once('wp-super-cache-patch.php');
