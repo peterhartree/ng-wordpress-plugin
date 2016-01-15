@@ -268,10 +268,10 @@ function ngwp_get_modified_date( $object ) {
 function ngwp_get_featured_image( $object ) {
     $featured_image = array();
     $featured_image_id = get_post_thumbnail_id( $object['id'] );
-    $featured_image_full_size_array = wp_get_attachment_image_src($thumb_id, 'full', true);
-    $featured_image_large_size_array = wp_get_attachment_image_src($thumb_id, 'large', true);
-    $featured_image_medium_size_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
-    $featured_image_thumbnail_size_array = wp_get_attachment_image_src($thumb_id, 'thumbnail', true);
+    $featured_image_full_size_array = wp_get_attachment_image_src($featured_image_id, 'full', true);
+    $featured_image_large_size_array = wp_get_attachment_image_src($featured_image_id, 'large', true);
+    $featured_image_medium_size_array = wp_get_attachment_image_src($featured_image_id, 'medium', true);
+    $featured_image_thumbnail_size_array = wp_get_attachment_image_src($featured_image_id, 'thumbnail', true);
     $featured_image['srcs'] = array();
     $featured_image['srcs']['full'] = $featured_image_full_size_array[0];
     $featured_image['srcs']['large'] = $featured_image_large_size_array[0];
