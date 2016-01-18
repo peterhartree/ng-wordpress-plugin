@@ -278,5 +278,12 @@ function ngwp_get_featured_image( $object ) {
     $featured_image['srcs']['medium'] = $featured_image_medium_size_array[0];
     $featured_image['srcs']['thumbnail'] = $featured_image_thumbnail_size_array[0];
 
+    $featured_image['is_default'] = false;
+
+    if(!has_post_thumbnail($object['id'])):
+        // This was the default featured image
+        $featured_image['is_default'] = true;
+    endif;
+
     return $featured_image;
 }
