@@ -20,7 +20,7 @@ function ngwp_get_options( $data ) {
     $options->front_page->ID = $front_page_id;
     $options->front_page->page_name = $front_page_post_name;
 
-    $options = apply_filters('ngwp_options', $options);
+    $options = apply_filters('ngwp_get_options', $options);
 
     return $options;
 }
