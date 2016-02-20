@@ -178,8 +178,15 @@ function ngwp_get_robots( $object, $field_name, $request ) {
  */
 function ngwp_get_social_image( $object, $field_name, $request ) {
     $thumb_id = get_post_thumbnail_id();
-    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
-    $thumb_url = $thumb_url_array[0];
+
+    if(!empty($thumb_id)):
+        $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+        $thumb_url = $thumb_url_array[0];
+    else:
+        $wpseo_social = get_option('wpseo_social');
+        $thumb_url = $wpseo_social['og_default_image'];
+    endif;
+
     return $thumb_url;
 }
 
