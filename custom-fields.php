@@ -66,10 +66,29 @@ function ngwp_get_custom_fields( $object, $field_name, $request ) {
 function ngwp_get_url( $object ) {
     $type = $object[ 'type' ];
     $slug = $object[ 'slug' ];
-    $ng_press_url = '/' . $type . '/' . $slug . '/';
+
+    $type_slug = null;
+
+    if($type === 'post'):
+        $type_slug = 'blog';
+    elseif($type === 'page'):
+        // Do nothing
+    else:
+        $type_slug = $type;
+    endif;
+
+    $ng_press_url = '/' . $slug . '/';
+
+    if($type_slug !== null):
+        $ng_press_url = '/' . $type_slug . $ng_press_url;
+    endif;
+
+    if($ng_press_url === '/home/'):
+        $ng_press_url = '/';
+    endif;
+
     return $ng_press_url;
 }
-
 /**
  * Get the value of the "starship" field
  *
